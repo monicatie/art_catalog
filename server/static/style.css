@@ -11,8 +11,17 @@ p {
     margin: 0;
 }
 
+.search {
+    margin-bottom: 20px;
+}
+
 .art {
     text-align: center;
+}
+
+.art img {
+    max-width: 90vw;
+    max-height: 90vh
 }
 
 .title {

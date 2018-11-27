@@ -2,15 +2,23 @@
 
 {% block header %}
   <h1>{% block title %}Sightings{% endblock %}</h1>
-
+  <div class="search">
+    <form method="post">
+      <label for="artist">artist</label>
+      <input name="artist" id="artist">
+      <input type="submit" value="Submit">
+    </form>
+  </div>
+  {% for message in get_flashed_messages() %}
+    <div class="flash">{{ message }}</div>
+  {% endfor %}
 {% endblock %}
-
 {% block content %}
   {% for sighting in sightings %}
     <article class="artwork">
       <div class="art">
         <div>
-          <img style="width: 30vw; height:30vh" src="{{ sighting['url'] }}">
+          <img src="{{ sighting['url'] }}">
           <p class="title">{{ sighting['title'] }}</p>
           <p class="subtitle">{{ sighting['artist'] }}</p>
           <p class="date">{{ sighting['date_created'] }}</p>
