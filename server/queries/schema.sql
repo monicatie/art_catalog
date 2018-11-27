@@ -8,6 +8,6 @@ CREATE TABLE sightings (
     museum_name TEXT,
     title TEXT,
     artist TEXT,
-    date_created TEXT
+    date_created TEXT,
+    file_type TEXT NOT NULL DEFAULT "image"
 );
-

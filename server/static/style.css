@@ -26,7 +26,8 @@ p {
     text-align: center;
 }
 
-.art img {
+.art img,
+.art video {
     max-width: 90vw;
     max-height: 90vh
 }

@@ -18,7 +18,13 @@
     <article class="artwork">
       <div class="art">
         <div>
-          <img src="{{ sighting['url'] }}">
+          {% if sighting['file_type'] == 'video' %}
+            <video controls>
+              <source src="{{ sighting['url'] }}" type="video/mp4">
+            </video>
+          {% else %}
+            <img src="{{ sighting['url'] }}">
+          {% endif %}
           <p class="title">{{ sighting['title'] or "(No Title)"}}</p>
           <p class="subtitle">{{ sighting['artist'] }}</p>
           <p class="small">{{ sighting['date_created'] }}</p>
