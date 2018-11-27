@@ -2,23 +2,23 @@
 
 {% block header %}
   <h1>{% block title %}Sightings{% endblock %}</h1>
+
 {% endblock %}
 
 {% block content %}
   {% for sighting in sightings %}
-    <article class="post">
-      <header>
+    <article class="artwork">
+      <div class="art">
         <div>
           <img style="width: 30vw; height:30vh" src="{{ sighting['url'] }}">
-          <h1>{{ sighting['title'] }}</h1>
-          <div class="about">by {{ sighting['artist'] }} - {{ sighting['date_created'] }}</div>
+          <p class="title">{{ sighting['title'] }}</p>
+          <p class="subtitle">{{ sighting['artist'] }}</p>
+          <p class="date">{{ sighting['date_created'] }}</p>
         </div>
-      </header>
-      <div class="body">
-          <p>Seen at {{ sighting['museum_name'] }} on {{ sighting['sighted_date'] }}</p>
-          <p>url: {{ sighting['url'] }}</p>
       </div>
-
+      <div class="description">
+          <p>Seen at {{ sighting['museum_name'] }} on {{ sighting['sighted_date'] }}</p>
+      </div>
     </article>
     {% if not loop.last %}
       <hr>
