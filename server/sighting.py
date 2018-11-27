@@ -18,7 +18,7 @@ def index():
 
         if artist:
             artist_sightings = db.execute(
-                'SELECT sighting_id, title, artist, date_created, museum_name, sighting_date, url, user_name FROM sightings WHERE artist = ?', (artist,)
+                'SELECT sighting_id, title, artist, date_created, museum_name, sighting_date, url, user_name FROM sightings WHERE artist LIKE ?', ('%'+artist+'%',)
             ).fetchall()
 
             if artist_sightings:
@@ -30,3 +30,11 @@ def index():
             flash(error)
     return render_template('sightings/index.html')
 
+@bp.route('/artists')
+def artists():
+    db = get_db()
+    results = db.execute(
+        'SELECT DISTINCT artist FROM sightings ORDER BY artist'
+    ).fetchall()
+
+    return render_template('sightings/artists.html', results=results)

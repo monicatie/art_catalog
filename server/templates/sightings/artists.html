@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>Artists in DB</h1>
+{% endblock %}
+{% block content %}
+  {% for result in results %}
+    <p>{{ result['artist'] }}</p>
+  {% endfor %}
+{% endblock %}

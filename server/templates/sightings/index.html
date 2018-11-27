@@ -4,9 +4,9 @@
   <h1>{% block title %}Sightings{% endblock %}</h1>
   <div class="search">
     <form method="post">
-      <label for="artist">artist</label>
-      <input name="artist" id="artist">
-      <input type="submit" value="Submit">
+      <label for="artist"></label>
+      <input name="artist" id="artist" placeholder="ENTER ARTIST">
+      <input type="submit" style="visibility:hidden" value="Submit">
     </form>
   </div>
   {% for message in get_flashed_messages() %}
@@ -19,13 +19,13 @@
       <div class="art">
         <div>
           <img src="{{ sighting['url'] }}">
-          <p class="title">{{ sighting['title'] }}</p>
+          <p class="title">{{ sighting['title'] or "(No Title)"}}</p>
           <p class="subtitle">{{ sighting['artist'] }}</p>
-          <p class="date">{{ sighting['date_created'] }}</p>
+          <p class="small">{{ sighting['date_created'] }}</p>
         </div>
       </div>
-      <div class="description">
-          <p>Seen at {{ sighting['museum_name'] }} on {{ sighting['sighted_date'] }}</p>
+      <div class="description small">
+          <p>Seen at {{ sighting['museum_name'] }} on {{ sighting['sighting_date'] }}</p>
       </div>
     </article>
     {% if not loop.last %}
