@@ -10,3 +10,4 @@ CREATE TABLE sightings (
     artist TEXT,
     date_created TEXT
 );
+

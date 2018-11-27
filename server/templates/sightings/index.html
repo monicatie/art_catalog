@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Sightings{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  {% for sighting in sightings %}
+    <article class="post">
+      <header>
+        <div>
+          <h1>{{ sighting['title'] }}</h1>
+          <div class="about">by {{ sighting['artist'] }} - {{ sighting['date_created'] }}</div>
+        </div>
+      </header>
+      <div class="body">
+          <p>Seen at {{ sighting['museum_name'] }} on {{ sighting['sighted_date'] }}</p>
+          <p>url: {{ sighting['url'] }}</p>
+      </div>
+
+    </article>
+    {% if not loop.last %}
+      <hr>
+    {% endif %}
+  {% endfor %}
+{% endblock %}
