@@ -1,3 +1,5 @@
+-- Unused...keeping for if normalizing starts making sense
+
 create table museums (
     museum_id integer PRIMARY KEY,
     name text
