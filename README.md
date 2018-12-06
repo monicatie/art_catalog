@@ -1,4 +1,4 @@
-# art_catalogue
+# art_catalog
 
 A flask app for cataloging artwork seen in travels
 
