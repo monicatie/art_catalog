@@ -1,5 +1,3 @@
-DROP TABLE IF EXISTS sightings;
-
 CREATE TABLE sightings (
     sighting_id INTEGER PRIMARY KEY AUTOINCREMENT,
     sighting_date TEXT,
