@@ -1,3 +1,9 @@
+CREATE TABLE user (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    username TEXT UNIQUE NOT NULL,
+    password TEXT NOT NULL
+);
+
 CREATE TABLE sightings (
     sighting_id INTEGER PRIMARY KEY AUTOINCREMENT,
     sighting_date TEXT,

@@ -1,5 +1,9 @@
 nav {
     margin: 1rem 0;
+    display: flex;
+}
+nav .menu {
+    flex-grow: 1;
 }
 body {
     margin: 0 100px;
