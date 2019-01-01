@@ -1,4 +1,5 @@
 import os
+import boto3, botocore
 
 from flask import Flask
 
@@ -10,12 +11,17 @@ def create_app(test_config=None):
         DATABASE=os.path.join(app.instance_path, 'server.sqlite'),
     )
 
-    if test_config is None:
-        # load the instance config, if it exists, when not testing
-        app.config.from_pyfile('config.py', silent=True)
-    else:
+    if test_config is not None:
         # load the test config if passed in
         app.config.from_mapping(test_config)
+    else:
+        # load the instance config, if it exists, when not testing
+        app.config.from_pyfile('config.py', silent=True)
+        app.s3 = boto3.client(
+            "s3",
+            aws_access_key_id=app.config['S3_KEY'],
+            aws_secret_access_key=app.config['S3_SECRET']
+        )
 
     # ensure the instance folder exists
     try:
@@ -25,6 +31,9 @@ def create_app(test_config=None):
     
     from . import auth
     app.register_blueprint(auth.bp)
+
+    from . import upload
+    app.register_blueprint(upload.bp)
 
     from . import db
     db.init_app(app)
