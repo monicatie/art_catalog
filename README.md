@@ -4,8 +4,13 @@ A flask app for cataloging artwork seen in travels
 
 ====
 To start
-Initialize venv
-pip install -r requirements.txt
+Initialize venv with
+  . venv/bin/activate
+
+dev:
+  pip install -r dev-requirements.txt
+prod:
+  pip install -r prod-requirements.txt
 
 In the venv:
 export FLASK_APP=server
