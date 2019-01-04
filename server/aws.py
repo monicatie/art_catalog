@@ -2,8 +2,6 @@ from flask import current_app
 
 def upload_file_to_s3(file, bucket_name, acl="public-read"):
     try:
-        print(file)
-        print(bucket_name)
         current_app.s3.upload_fileobj(
             file,
             bucket_name,
