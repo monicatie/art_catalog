@@ -5,7 +5,10 @@ def upload_file_to_s3(file, bucket_name, acl="public-read"):
         current_app.s3.upload_fileobj(
             file,
             bucket_name,
-            file.filename
+            file.filename,
+            ExtraArgs={
+                "ContentType": file.content_type
+            }
         )
 
     except Exception as e:

@@ -8,6 +8,7 @@ from flask import (
 from werkzeug.utils import secure_filename
 from server.auth import login_required
 from server.aws import upload_file_to_s3
+from server.db import get_db
 
 bp = Blueprint('upload', __name__)
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif', 'mp4'])
@@ -28,6 +29,7 @@ def get_file_hash(file):
     hasher = hashlib.md5()
     buf = file.read()
     hasher.update(buf)
+    file.seek(0) #return file current position back to beginning
     return hasher.hexdigest()
 
 def get_current_timestamp():
@@ -46,7 +48,24 @@ def upload_file():
 
     if file and allowed_file(file.filename):
         file.filename = generate_unique_filename(file)
-        output   	  = upload_file_to_s3(file, current_app.config["S3_BUCKET"])
-        return str(output)
+        
+        try:
+            output = upload_file_to_s3(file, current_app.config["S3_BUCKET"])
+        except Exception as e:
+            return str(output)
+
+        artist = request.form['artist']
+        title = request.form['title']
+        created_date = request.form['created_date']
+        db = get_db()
+        user_id = g.user['id']
+
+        db.execute(
+            'INSERT INTO sightings (user_id, url, artist, title, date_created) VALUES (?, ?, ?, ?, ?)',
+            (user_id, output, artist, title, created_date)
+        )
+        db.commit()
+        return "Finished uploading"
+
     else:
         return redirect("/upload")
