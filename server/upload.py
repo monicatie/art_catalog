@@ -13,10 +13,12 @@ def allowed_file(filename):
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 @bp.route('/upload', methods=['GET'])
+@login_required
 def upload():
     return render_template('upload/upload.html')
 
 @bp.route('/upload', methods=['POST'])
+@login_required
 def upload_file():
     if "user_file" not in request.files:
         return "No user_file key in request.files"
