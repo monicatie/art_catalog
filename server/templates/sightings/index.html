@@ -17,12 +17,12 @@
     <article class="artwork">
       <div class="art">
         <div>
-          {% if sighting['file_type'] == 'video' %}
+          {% if sighting['url'][-3:] == "mp4" %}
             <video controls>
-              <source src="https://s3-us-west-2.amazonaws.com/mt-art/{{ sighting['url'] }}" type="video/mp4">
+              <source src="{{ sighting['url'] }}" type="video/mp4">
             </video>
           {% else %}
-            <img src="https://s3-us-west-2.amazonaws.com/mt-art/{{ sighting['url'] }}">
+            <img src="{{ sighting['url'] }}">
           {% endif %}
           <p class="title">{{ sighting['title'] or "(No Title)"}}</p>
           <p class="subtitle">{{ sighting['artist'] }}</p>

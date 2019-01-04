@@ -1,9 +1,4 @@
-CREATE TABLE user (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    username TEXT UNIQUE NOT NULL,
-    password TEXT NOT NULL
-);
-
+drop table sightings;
 CREATE TABLE sightings (
     sighting_id INTEGER PRIMARY KEY AUTOINCREMENT,
     sighting_date TEXT,
@@ -15,3 +10,4 @@ CREATE TABLE sightings (
     date_created TEXT,
     FOREIGN KEY (user_id) REFERENCES user (id)
 );
+.read server/queries/insertSightings.sql
