@@ -2,3 +2,4 @@ awscli
 boto3
 Click==7.0
 Flask==1.0.2
+pypika

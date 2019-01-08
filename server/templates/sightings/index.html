@@ -2,9 +2,11 @@
 
 {% block header %}
   <div class="search">
-    <form method="post">
+    <form method="get">
       <label for="artist"></label>
-      <input name="artist" id="artist" placeholder="ENTER ARTIST">
+      <input name="artist" placeholder="ENTER ARTIST">
+      <label for="museum"></label>
+      <input name="museum" id="museum" placeholder="ENTER MUSEUM">
       <input type="submit" style="visibility:hidden" value="Submit">
     </form>
   </div>
